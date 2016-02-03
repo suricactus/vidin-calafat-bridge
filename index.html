@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Danube bridge data</title>
+	<title>Vidin-Calafat "New Europe" bridge traffic</title>
 	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/nvd3/1.7.0/nv.d3.min.css">
 
@@ -19,11 +19,11 @@
 
 </head>
 <body>
-	<div class="container">		
-		<h1>Vidin-Calafat Danube bridge traffic</h1>
+	<div class="container">
+		<h1>Vidin-Calafat "New Europe" bridge traffic</h1>
 		<form>
 			<div class="form-horizontal">
-				
+
 
 				<div id="period" class="form-group">
 					<label class="col-sm-2">Period</label>
@@ -42,7 +42,7 @@
 							</label>
 					</div>
 				</div>
-				
+
 
 			</div>
 		</form>
@@ -51,6 +51,9 @@
 			<svg></svg>
 		</div>
 		<div id="table">
+		</div>
+		<div class="footer">
+			<em>Data from http://www.vidincalafatbridge.bg/</em>
 		</div>
 
 	</div>
@@ -183,15 +186,15 @@
 
 				return [countStats, averageStats];
 			},
-		}; 
+		};
 		var daysInMonth = function (date) {
 			return new Date(date.getFullYear(), date.getMonth() +1, 0).getDate();
 		};
 		var isLeapYear = function (year) {
-		  return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
+			return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
 		};
 		var normalizeMonth = function(monthIndex) {
-			monthIndex += 1;			
+			monthIndex += 1;
 			monthIndex = ((monthIndex < 10) ? '0' : '') + monthIndex;
 			return monthIndex;
 		};
@@ -222,12 +225,12 @@
 
 					monthStats[ r.monthKeySince ] = monthStats[ r.monthKeySince ] || 0;
 					monthStats[ r.monthKeyUntil ] = monthStats[ r.monthKeyUntil ] || 0;
-					
+
 
 					if(r.monthKeySince == r.monthKeyUntil) {
 						monthStats[ r.monthKeySince ] += r.count;
 					} else {
-						var daysInCurrentMonth = daysInMonth(r.dateSince) - r.dateSince.getDate() + 1; 
+						var daysInCurrentMonth = daysInMonth(r.dateSince) - r.dateSince.getDate() + 1;
 						var daysInNextMonth = r.periodLengthInDays - daysInCurrentMonth;
 
 						monthStats[ r.monthKeySince ] += Math.round(daysInCurrentMonth * r.countAverage);
@@ -240,7 +243,7 @@
 
 				showData(periodMap.week())
 			});
-		
+
 		d3.selectAll('#period input')
 			.on('change', function() {
 				if(!periodMap.hasOwnProperty(this.value)) {
@@ -287,7 +290,7 @@
 
 			var table = container
 				.append('table')
-				.attr('class', 'table table-condensed table-striped');		
+				.attr('class', 'table table-condensed table-striped');
 			var thead = table
 				.append('thead');
 			var tbody = table
@@ -300,7 +303,7 @@
 				.enter()
 				.append('th')
 				.text(function(r) {
-					return r; 
+					return r;
 				});
 
 			var rows = tbody
@@ -355,6 +358,16 @@
 		};
 	});
 
+
+	</script>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-73117681-1', 'auto');
+		ga('send', 'pageview');
 
 	</script>
 </body>
