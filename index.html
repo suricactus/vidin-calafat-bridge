@@ -66,12 +66,12 @@
 		var periodMap = {
 			week: function() {
 				var countStats = {
-					key: 'Total cars per week',
+					key: 'Total vehicles per week',
 					bar: true,
 					values: [],
 				};
 				var averageStats = {
-					key: 'Average cars per day',
+					key: 'Average vehicles per day',
 					values: [],
 				};
 
@@ -87,12 +87,12 @@
 			},
 			month: function() {
 				var countStats = {
-					key: 'Total cars per month',
+					key: 'Total vehicles per month',
 					bar: true,
 					values: [],
 				};
 				var averageStats = {
-					key: 'Average cars per day',
+					key: 'Average vehicles per day',
 					values: [],
 				};
 
@@ -115,12 +115,12 @@
 			},
 			quarter: function() {
 				var countStats = {
-					key: 'Total cars per quarter',
+					key: 'Total vehicles per quarter',
 					bar: true,
 					values: [],
 				};
 				var averageStats = {
-					key: 'Average cars per day',
+					key: 'Average vehicles per day',
 					values: [],
 				};
 				var quarterStats = {};
@@ -156,12 +156,12 @@
 			},
 			year: function() {
 				var countStats = {
-					key: 'Total cars per year',
+					key: 'Total vehicles per year',
 					bar: true,
 					values: [],
 				};
 				var averageStats = {
-					key: 'Average cars per day',
+					key: 'Average vehicles per day',
 					values: [],
 				};
 				var yearStats = [];
@@ -342,7 +342,7 @@
 							})
 							.showMaxMin(false);
 					chart.y1Axis.tickFormat(function(d) { return d3.format('f')(d) });
-					chart.bars.forceY([0]).padData(false);
+					chart.forceY([0]);
 					chart.x2Axis.tickFormat(function(d) {
 							return d3.time.format('%x')(new Date(d))
 					}).showMaxMin(false);
@@ -358,6 +358,16 @@
 		};
 	});
 
+
+	</script>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-73117681-1', 'auto');
+		ga('send', 'pageview');
 
 	</script>
 </body>
