@@ -8,6 +8,8 @@ if [[ -z $(git diff vidin-calafat-bridge-stats.csv) ]]; then
     exit 0;
 fi;
 
-# git commit -m "update: cron update at $(date -Iminutes)"
-git commit -m "various changes of names"
+git add vidin-calafat-bridge-stats.csv
+git commit -m "update: cron update at $(date -Iminutes)"
 git push origin master
+
+exit 0
