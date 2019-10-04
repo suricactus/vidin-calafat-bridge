@@ -16,7 +16,7 @@ use Log::Log4perl qw(:easy);
 
 our $REQ_URL = "http://www.vidincalafatbridge.bg/en/page/117";
 our $REQ_TIMEOUT = 10;
-our $CSV_FILE = 'VidinCalafatBridgeStats.csv';
+our $CSV_FILE = 'vidin-calafat-bridge-stats.csv';
 
 sub new($;$)
 {
@@ -35,8 +35,6 @@ sub Handler($)
     my ($self) = @_;
 
     $$self{cgi} = new CGI;
-
-    
 }
 
 sub ExtractTraffic($)
@@ -59,9 +57,9 @@ sub ExtractTraffic($)
         my $result = [];
 
         #print Dumper ($content);
-        
+
         my @strs = $content->find('p')->each;
-        
+
         for my $i ( 0 .. $#strs )
         {
             my $str = $strs[$i]->text;
@@ -72,8 +70,6 @@ sub ExtractTraffic($)
         $result = [ sort { $$a[0] cmp $$b[0] } @{ $result } ];
 
         $self->WriteCsv($result);
-
-        print STDERR Dumper($result);
     }
     else
     {
@@ -86,7 +82,7 @@ sub WriteCsv($$)
     my ($self, $data) = @_;
     my $csv = Text::CSV->new({ binary => 1  });
     my $fh = IO::File->new();
-    
+
     $fh->open( $CSV_FILE, 'r+' )
         or ERROR "Unable to open csv file: $CSV_FILE";
 
@@ -95,16 +91,15 @@ sub WriteCsv($$)
 
     foreach my $new_row (@{ $data  })
     {
-        print STDERR $$last_line[0], Dumper ($last_line);
-        if($$last_line[0] gt $$new_row[0] || $$last_line[0] eq $$new_row[0]) 
+        if($$last_line[0] gt $$new_row[0] || $$last_line[0] eq $$new_row[0])
         {
-                next;    
+                next;
         }
 
         print $fh "\n\r" unless $$data[0] == $new_row;
 
         INFO "New line printed: " . Dumper($new_row);
-        
+
         $csv->print( $fh, $new_row );
     }
 }
